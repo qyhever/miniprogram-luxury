@@ -26,14 +26,13 @@
   "dependencies": {
     "qs": "^6.10.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     ".{js,vue}": [
-      "eslint --fix"
+      "eslint --fix",
+      "git add"
     ]
   },
   "devDependencies": {
@@ -44,7 +43,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^7.15.1",
-    "husky": "^6.0.0",
     "lint-staged": "^11.1.2"
   }
 }

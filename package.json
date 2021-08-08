@@ -30,7 +30,7 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    ".{js,vue}": [
+    "*.{js,vue}": [
       "eslint --fix",
       "git add"
     ]

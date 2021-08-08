@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint --color -f codeframe --ext .js,.vue,**/*.js,**/*.vue api components pages store utils main.js",
     "lint:fix": "eslint --fix --color --ext .js,.vue,**/*.js,**/*.vue api components pages store utils main.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": ".husky/pre-commit"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,10 @@
   },
   "lint-staged": {
     "**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.js|{api,components,pages,store,utils}/**/*.{js,vue}": [
       "eslint --fix",
       "git add"
     ]

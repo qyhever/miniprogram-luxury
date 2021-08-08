@@ -6,6 +6,10 @@ module.exports = {
     es6: true,
     browser: true
   },
+  globals: {
+    wx: false,
+    uni: false
+  },
   extends: [
     'standard',
     'plugin:vue/recommended'

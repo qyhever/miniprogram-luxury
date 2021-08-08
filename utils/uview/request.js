@@ -1,7 +1,7 @@
 import deepMerge from '@/uview-ui/libs/function/deepMerge'
 import validate from '@/uview-ui/libs/function/test'
 
-import { showAlertModal } from '@/utils'
+// import { showAlertModal } from '@/utils'
 
 const codeMessage = {
   400: '请求错误',
@@ -25,7 +25,7 @@ class Request {
   request (options = {}) {
     // 检查请求拦截
     if (this.interceptor.request && typeof this.interceptor.request === 'function') {
-      const tmpConfig = {}
+      // const tmpConfig = {}
       const interceptorRequest = this.interceptor.request(options)
       if (interceptorRequest === false) {
         // 返回一个处于pending状态中的Promise，来取消原promise，避免进入then()回调
@@ -64,7 +64,7 @@ class Request {
             resolve(response)
           }
         } else {
-          if (response.statusCode == 200) {
+          if (response.statusCode === 200) {
             if (this.interceptor.response && typeof this.interceptor.response === 'function') {
               const resInterceptors = this.interceptor.response(response.data)
               if (resInterceptors !== false) {
@@ -91,9 +91,12 @@ class Request {
       }
 
       // 判断用户传递的URL是否/开头,如果不是,加上/，这里使用了uView的test.js验证库的url()方法
-      options.url = validate.url(options.url) ? options.url : (this.config.baseUrl + (options.url.indexOf('/') ==
+      options.url = validate.url(options.url)
+        ? options.url
+        : (this.config.baseUrl + (options.url.indexOf('/') ===
         0
-        ? options.url : '/' + options.url))
+            ? options.url
+            : '/' + options.url))
 
       // 是否显示loading
       // 加一个是否已有timer定时器的判断，否则有两个同时请求的时候，后者会清除前者的定时器id
@@ -110,9 +113,9 @@ class Request {
       uni.request(options)
     })
     // .catch(res => {
-    // 	// 如果返回reject()，不让其进入this.$u.post().then().catch()后面的catct()
-    // 	// 因为很多人都会忘了写后面的catch()，导致报错捕获不到catch
-    // 	return new Promise(()=>{});
+    //  // 如果返回reject()，不让其进入this.$u.post().then().catch()后面的catct()
+    //  // 因为很多人都会忘了写后面的catch()，导致报错捕获不到catch
+    //  return new Promise(()=>{});
     // })
   }
 

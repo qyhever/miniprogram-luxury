@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import store from '@/store'
+// import Vue from 'vue'
+// import store from '@/store'
 // import http from './uview/request'
 import http from '@/uview-ui/libs/request'
 import { showAlertModal } from './index'

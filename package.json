@@ -32,7 +32,7 @@
     }
   },
   "lint-staged": {
-    "*.js|{api,components,pages,store,utils}/**/*.js": [
+    ".{js,vue}": [
       "eslint --fix"
     ]
   },
@@ -44,7 +44,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^7.15.1",
-    "husky": "^7.0.1",
+    "husky": "^6.0.0",
     "lint-staged": "^11.1.2"
   }
 }

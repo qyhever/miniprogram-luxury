@@ -52,7 +52,9 @@ export default {
       current: 0
     }
   },
-  onLoad () {},
+  onLoad () {
+    console.log('onLoad')
+  },
   methods: {
     onTabChange (index) {
       this.current = index

@@ -1,0 +1,66 @@
+
+@for $i from 1 through 50 {
+  @if $i % 2 == 0 or $i % 5 == 0 {
+    .padding-#{$i} {
+      padding: $i + px;
+    }
+    .padding-top-#{$i} {
+      margin-top: $i + px;
+    }
+    .padding-right-#{$i} {
+      padding-right: $i + px;
+    }
+    .padding-bottom-#{$i} {
+      padding-bottom: $i + px;
+    }
+    .padding-left-#{$i} {
+      padding-left: $i + px;
+    }
+    .margin-#{$i} {
+      margin: $i + px;
+    }
+    .margin-top-#{$i} {
+      margin-top: $i + px;
+    }
+    .margin-right-#{$i} {
+      margin-right: $i + px;
+    }
+    .margin-bottom-#{$i} {
+      margin-bottom: $i + px;
+    }
+    .margin-left-#{$i} {
+      margin-left: $i + px;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.items-end {
+  align-items: flex-end;
+}
+.flex-grow {
+  flex-grow: 1;
+}

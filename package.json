@@ -1,0 +1,50 @@
+{
+  "name": "miniprogram-luxury",
+  "version": "1.0.0",
+  "description": "use uni to develop wechat applet\r 使用 uni 开发 微信小程序\r 本项目为 HBuilderX 创建项目，通过 HBuilderX 运行",
+  "main": "main.js",
+  "scripts": {
+    "lint": "eslint --color -f codeframe --ext .js,.vue,**/*.js,**/*.vue api components pages store utils main.js",
+    "lint:fix": "eslint --fix --color --ext .js,.vue,**/*.js,**/*.vue api components pages store utils main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qyhever/miniprogram-luxury.git"
+  },
+  "keywords": [
+    "uni",
+    "miniprogram",
+    "wechat"
+  ],
+  "author": "qyhever",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qyhever/miniprogram-luxury/issues"
+  },
+  "homepage": "https://github.com/qyhever/miniprogram-luxury#readme",
+  "dependencies": {
+    "qs": "^6.10.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^7.15.1",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2"
+  }
+}

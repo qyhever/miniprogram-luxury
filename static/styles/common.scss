@@ -1,0 +1,15 @@
+.g-btn {
+  min-width: 82px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.g-btn + .g-btn {
+  margin-left: 10px;
+}
+
+.g-nav-bar {
+  .uni-navbar .uni-navbar--border {
+    border-bottom: 0;
+  }
+}

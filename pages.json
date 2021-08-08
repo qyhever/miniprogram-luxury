@@ -1,0 +1,72 @@
+{
+  "easycom": {
+    "custom": {
+      "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+    }
+  },
+  // 编译模式配置，仅开发期间生效，可以修改此配置的 list[0].page 来直达某个开发页面，而不用频繁的调整 pages 的顺序
+  "condition": {
+    "current": 0,
+    "list": [
+      {
+        "name": "index",
+        "path": "pages/home/home",
+        "query": "id=1&status=1"
+      }
+    ]
+  },
+  "pages": [ // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/evaluation/evaluation",
+      "style": {
+        "navigationBarTitleText": "估价"
+      }
+    },
+    {
+      "path": "pages/my/my",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "中古汇",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#DFB595",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/images/tabbar/home.png",
+        "selectedIconPath": "static/images/tabbar/home-active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/evaluation/evaluation",
+        "iconPath": "static/images/tabbar/evaluation.png",
+        "selectedIconPath": "static/images/tabbar/evaluation-active.png",
+        "text": "品类"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "static/images/tabbar/my.png",
+        "selectedIconPath": "static/images/tabbar/my-active.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

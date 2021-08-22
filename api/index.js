@@ -12,3 +12,11 @@ export function login (data) {
     data
   })
 }
+
+export function getDiscList (data) {
+  return req({
+    method: 'get',
+    url: 'https://qyhever.com/common/disc',
+    data
+  })
+}

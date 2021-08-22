@@ -10,7 +10,7 @@
     />
     <view class="header">
       <view class="banner">
-        <image class="banner-image" src="/static/images/banner.png" />
+        <image class="banner-image" src="/static/images/home-banner.png" />
       </view>
       <view class="u-flex u-border-bottom tabs-container">
         <u-tabs
@@ -30,34 +30,142 @@
       </view>
     </view>
 
-    <view class="list">
+    <scroll-view
+      class="scroll-list"
+      scroll-y
+      enable-back-to-top
+      refresher-enabled
+      :refresher-triggered="refresherTriggered"
+      :lower-threshold="100"
+      @refresherrefresh="onRefresh"
+      @refresherrestore="onRestore"
+      @scrolltolower="onScrolltolower"
+    >
       <view
-        v-for="(item, index) in 6"
+        v-for="(item, index) in goodsList"
         :key="index"
-        class="u-border-bottom item"
+        class="border-bottom flex goods-item"
+        :class="{ last: index === goodsList.length - 1 }"
       >
-        <view class="item__hd" />
-        <view class="item__bd" />
+        <view class="item-hd">
+          <image class="fill-container" src="/static/images/goods.png" />
+        </view>
+        <view class="flex flex-column justify-between item-bd">
+          <view>
+            <view class="margin-bottom-6 font-size-15">
+              GUCCI古驰经典女包
+            </view>
+            <view class="flex">
+              <view class="g-label">
+                平台现货
+              </view>
+              <view class="g-label">
+                9成新
+              </view>
+            </view>
+          </view>
+          <view>
+            <text class="font-bold">
+              ￥
+            </text>
+            <text class="margin-left-4 margin-right-6 font-size-24 font-bold">
+              8999
+            </text>
+            <text class="line-through color-text-secondary font-size-12">
+              ￥12999
+            </text>
+          </view>
+          <view class="flex flex-column items-center item-nook">
+            <view class="margin-bottom-2 font-size-10 color-text-secondary">
+              1239人围观
+            </view>
+            <u-button
+              class="g-btn g-btn--primary"
+              type="primary"
+              :ripple="false"
+              hover-class="g-primary-hover"
+            >
+              抢购
+            </u-button>
+          </view>
+        </view>
       </view>
-    </view>
+      <view
+        class="flex justify-center items-center padding-top-10 padding-bottom-10"
+      >
+        <u-loadmore :status="loadStatus" bg-color="#f6f6f6" />
+      </view>
+    </scroll-view>
   </view>
 </template>
 
 <script>
 import { enumCategoryList } from '@/utils/enum'
+import { getDiscList } from '@/api'
 export default {
   data () {
     return {
       tabList: enumCategoryList.arr,
-      current: 0
+      current: 0,
+      paper: {
+        page: 1,
+        size: 10
+      },
+      total: 0,
+      goodsList: [],
+      refresherTriggered: true,
+      loadStatus: 'loading'
     }
   },
   onLoad () {
-    console.log('onLoad')
+    this.query()
   },
   methods: {
     onTabChange (index) {
       this.current = index
+    },
+    async query () {
+      this.loadStatus = 'loading'
+      try {
+        const res = await getDiscList({
+          page: this.paper.page,
+          size: 10
+        })
+        console.log('res', res)
+        const list = res.list || []
+        const total = res.total || 0
+        if (this.paper.page === 1) {
+          this.goodsList = list
+        } else {
+          this.goodsList = this.goodsList.concat(list)
+        }
+        this.total = total
+        this.loadStatus = total === this.goodsList.length ? 'nomore' : 'loadmore'
+      } catch (err) {
+        console.log('err', err)
+      }
+    },
+    async onRefresh () {
+      console.log('onRefresh')
+      this.paper.page = 1
+      this.loadStatus = 'loadmore'
+      await this.query()
+      this.refresherTriggered = false
+    },
+    onRestore () {
+      console.log('onRestore')
+      this.refresherTriggered = 'restore'
+    },
+    onScrolltolower () {
+      console.log('onScrolltolower')
+      if (this.loadStatus === 'loading') {
+        return
+      }
+      if (this.loadStatus === 'nomore') {
+        return
+      }
+      this.paper.page += 1
+      this.query()
     }
   }
 }
@@ -106,21 +214,40 @@ export default {
   font-size: 13px;
   color: $color-text-secondary;
 }
-.list {
-
-}
-.item {
+.goods-item {
   padding: 15px;
   background-color: #fff;
+  &.last {
+    &:after {
+      display: none;
+    }
+  }
+  &:after {
+    left: 15px;
+    right: 15px;
+  }
 }
-.item__hd {
+.item-hd {
   flex: 0 0 100px;
-  width: 100px;
   height: 100px;
-  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
 }
-.item__bd {
+.item-bd {
+  position: relative;
   flex: 1;
   margin-left: 20px;
+}
+.item-nook {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+.scroll-list {
+  position: fixed;
+  top:  calc(292rpx + 50px + 44px + 20px);
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 </style>

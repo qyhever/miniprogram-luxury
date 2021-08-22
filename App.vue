@@ -47,5 +47,7 @@ export default {
 
 page {
   background-color: $color-bg;
+  font-size: 14px;
+  color: $color-text-primary;
 }
 </style>

@@ -228,6 +228,7 @@ export default {
 	computed: {
 		// 当没有传bgColor变量时，按钮按下去的颜色类名
 		getHoverClass() {
+			if (this.hoverClass) return this.hoverClass
 			// 如果开启水波纹效果，则不启用hover-class效果
 			if (this.loading || this.disabled || this.ripple || this.hoverClass) return '';
 			let hoverClass = '';

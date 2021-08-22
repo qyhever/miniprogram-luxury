@@ -42,7 +42,7 @@ http.interceptor.response = (res) => {
   if (res.statusCode === 200) {
     const resData = res.data
     // 正常响应 code 200
-    if (resData.code === 200) {
+    if (resData.code === 200 || resData.success) {
       return resData.data
     }
     // 非正常响应 code 201

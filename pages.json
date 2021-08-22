@@ -19,6 +19,7 @@
     {
       "path": "pages/home/home",
       "style": {
+        "disableScroll": true,
         "navigationBarTitleText": "首页",
         "navigationStyle": "custom",
         "navigationBarTextStyle": "white"
@@ -27,13 +28,19 @@
     {
       "path": "pages/evaluation/evaluation",
       "style": {
-        "navigationBarTitleText": "估价"
+        "disableScroll": true,
+        "navigationBarTitleText": "估价",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
       }
     },
     {
       "path": "pages/my/my",
       "style": {
-        "navigationBarTitleText": "我的"
+        "disableScroll": true,
+        "navigationBarTitleText": "我的",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
       }
     }
   ],

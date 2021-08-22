@@ -1,5 +1,5 @@
 .g-btn {
-  min-width: 82px;
+  min-width: 76px;
   height: 30px;
   line-height: 30px;
 }
@@ -8,8 +8,75 @@
   margin-left: 10px;
 }
 
+.g-btn {
+  &.g-btn--primary {
+    .u-btn {
+      height: 32px;
+      line-height: 32px;
+      border-radius: 3px;
+      font-size: 15px;
+      color: $color-text-primary;
+    }
+  }
+}
+.g-primary-hover {
+  opacity: 0.8;
+  color: $color-text-primary;
+}
+
 .g-nav-bar {
   .uni-navbar .uni-navbar--border {
     border-bottom: 0;
   }
+}
+
+.g-card {
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.g-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 2px;
+  border: 1px solid #E3BAA2;
+  line-height: 12px;
+  font-size: 12px;
+  color: #E3BAA2;
+}
+
+.g-label + .g-label {
+  margin-left: 6px;
+}
+
+.g-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.g-section-header-label {
+  z-index: 9;
+  position: relative;
+  font-size: 16px;
+  font-weight: 700;
+  &:before {
+    z-index: -9;
+    content: "";
+    position: absolute;
+    top: 4px;
+    width: 3px;
+    height: 15px;
+    background-color: rgba(240, 206, 179, 0.8);
+    border-radius: 2px;
+  }
+}
+
+.g-section-header-more {
+  position: relative;
+  font-size: 13px;
+  color: $color-text-secondary;
 }

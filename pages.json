@@ -42,6 +42,13 @@
         "navigationStyle": "custom",
         "navigationBarTextStyle": "white"
       }
+    },
+    {
+      "path": "pages/category/category",
+      "style": {
+        "navigationBarTitleText": "选择品类",
+        "navigationBarBackgroundColor": "#ffffff"
+      }
     }
   ],
   "globalStyle": {

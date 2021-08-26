@@ -46,22 +46,24 @@
             <view class="g-section-header-label">
               选择估价品类
             </view>
-            <view class="g-section-header-more">
-              <text class="margin-right-6">
-                查看更多
-              </text>
-              <u-icon name="arrow-right" />
-            </view>
+            <navigator url="/pages/category/category">
+              <view class="g-section-header-more">
+                <text class="margin-right-6">
+                  查看更多
+                </text>
+                <u-icon name="arrow-right" />
+              </view>
+            </navigator>
           </view>
         </view>
         <view class="padding-left-10 padding-right-10 category-list">
           <view v-for="(item, index) in categoryList" :key="index" class="category-item">
-            <view class="category-item-inner">
+            <navigator class="category-item-inner" :url="'/pages/category/category?id=' + item.id">
               <image class="fill-container category-item__image" :src="item.picUrl" />
               <text class="category-item__label">
                 {{ item.name }}
               </text>
-            </view>
+            </navigator>
           </view>
         </view>
       </view>
@@ -72,18 +74,22 @@
 <script>
 const categoryList = [
   {
+    id: 1,
     name: '名包',
     picUrl: '/static/images/category-bag.png'
   },
   {
+    id: 2,
     name: '腕表',
     picUrl: '/static/images/category-watch.png'
   },
   {
+    id: 3,
     name: '首饰',
     picUrl: '/static/images/category-jewelry.png'
   },
   {
+    id: 4,
     name: '其它',
     picUrl: '/static/images/category-other.png'
   }

@@ -45,3 +45,23 @@ export function formatSeconds (seconds, showHours) {
   }
   return [showMinute, second].join(':')
 }
+
+export function normalizeBrandList (data) {
+  const ret = []
+  data.forEach(item => {
+    let current = ret.find(v => v.initials === item.initials)
+    if (!current) {
+      current = {
+        initials: item.initials,
+        data: []
+      }
+    }
+    if (!current.data.length) {
+      ret.push(current)
+    }
+    if (!current.data.find(v => v.name === item.name)) {
+      current.data.push(item)
+    }
+  })
+  return ret
+}

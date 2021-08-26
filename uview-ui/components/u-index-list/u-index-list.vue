@@ -257,7 +257,7 @@
 					this.$emit('select', anchor.index);
 					uni.pageScrollTo({
 						duration: 0,
-						scrollTop: anchor.top + this.scrollTop
+						scrollTop: Math.ceil(anchor.top) + this.scrollTop
 					});
 				}
 			}
@@ -267,7 +267,7 @@
 
 <style lang="scss" scoped>
 	@import "../../libs/css/style.components.scss";
-	
+
 	.u-index-bar {
 		position: relative
 	}

@@ -30,7 +30,7 @@
 			<view @tap.stop="retry(index)" v-if="item.error" class="u-error-btn">点击重试</view>
 			<image @tap.stop="doPreviewImage(item.url || item.path, index)" class="u-preview-image" v-if="!item.isImage" :src="item.url || item.path" :mode="imageMode"></image>
 		</view>
-		<slot name="file" :file="lists"></slot>
+    <slot name="file" :file="lists"></slot>
 		<view style="display: inline-block;" @tap="selectFile" v-if="maxCount > lists.length">
 			<slot name="addBtn"></slot>
 			<view
@@ -47,6 +47,9 @@
 				<view class="u-add-tips">{{ uploadText }}</view>
 			</view>
 		</view>
+    <view v-if="showDescription" class="how-taking" @click="onShowDescriptionClick">
+      <image class="fill-container" src="/static/images/how-to-taking-pictures.png" mode="aspectFill" />
+    </view>
 	</view>
 </template>
 
@@ -93,6 +96,10 @@
 export default {
 	name: 'u-upload',
 	props: {
+    showDescription: {
+			type: Boolean,
+			default: false
+    },
 		//是否显示组件自带的图片预览功能
 		showUploadList: {
 			type: Boolean,
@@ -318,7 +325,7 @@ export default {
 					res.tempFiles.map((val, index) => {
 						// 检查文件后缀是否允许，如果不在this.limitType内，就会返回false
 						if(!this.checkFileExt(val)) return ;
-						
+
 						// 如果是非多选，index大于等于1或者超出最大限制数量时，不处理
 						if (!multiple && index >= 1) return;
 						if (val.size > maxSize) {
@@ -554,6 +561,9 @@ export default {
 			})
 			if(!noArrowExt) this.showToast(`不允许选择${fileExt}格式的文件`);
 			return noArrowExt;
+		},
+		onShowDescriptionClick() {
+			this.$emit('description-click')
 		}
 	}
 };
@@ -650,5 +660,9 @@ export default {
 	right: 0;
 	z-index: 9;
 	line-height: 1;
+}
+.how-taking {
+  width: 196rpx;
+  height: 196rpx;
 }
 </style>

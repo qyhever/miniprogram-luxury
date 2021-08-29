@@ -112,18 +112,18 @@ export default {
       this.brandList = normalizedList
       this.brandCacheData[this.activeCategoryId] = normalizedList
     },
-    onCellItemClick () {
-      // const params = {
-      //   categoryId: this.activeCategoryId,
-      //   // 将 名字中的 & 替换，避免传参错误
-      //   categoryName: activeCategory.name.replace(/&/g, '^'),
-      //   brandId: row.id,
-      //   brandName: row.name,
-      //   brandLogo: row.logo
-      // }
-      // wx.navigateTo({
-      //   url: '/pages/publish-evalutaion/publish-evalutaion' + this.$u.queryParams(params)
-      // })
+    onCellItemClick (row) {
+      const params = {
+        categoryId: this.activeCategoryId,
+        // 将 名字中的 & 替换，避免传参错误
+        categoryName: this.activeCategory.name.replace(/&/g, '^'),
+        brandId: row.id,
+        brandName: row.name,
+        brandLogo: row.logo
+      }
+      wx.navigateTo({
+        url: '/pages/evaluation/publish-evaluation' + this.$u.queryParams(params)
+      })
     }
   }
 }

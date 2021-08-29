@@ -46,15 +46,20 @@
     {
       "path": "pages/category/category",
       "style": {
-        "navigationBarTitleText": "选择品类",
-        "navigationBarBackgroundColor": "#ffffff"
+        "navigationBarTitleText": "选择品类"
+      }
+    },
+    {
+      "path": "pages/evaluation/publish-evaluation",
+      "style": {
+        "navigationBarTitleText": "我要估价"
       }
     }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "中古汇",
-    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {

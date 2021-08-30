@@ -1,7 +1,7 @@
 .g-btn {
   min-width: 76px;
-  height: 30px;
-  line-height: 30px;
+  height: 45px;
+  line-height: 45px;
 }
 
 .g-btn + .g-btn {
@@ -11,11 +11,19 @@
 .g-btn {
   &.g-btn--primary {
     .u-btn {
+      height: 45px;
+      line-height: 45px;
+      border-radius: 3px;
+      font-size: 17px;
+      color: $color-text-primary;
+    }
+  }
+  &.g-btn--small {
+    .u-btn {
       height: 32px;
       line-height: 32px;
       border-radius: 3px;
       font-size: 15px;
-      color: $color-text-primary;
     }
   }
 }
@@ -86,4 +94,10 @@
   position: relative;
   font-size: 13px;
   color: $color-text-secondary;
+}
+
+.hover-class-gray.u-btn {
+	// background-color: rgb(235, 237, 238);
+  background-color: #f7f8f9 !important;
+  // opacity: 0.5;
 }

@@ -80,7 +80,7 @@
               1239人围观
             </view>
             <u-button
-              class="g-btn g-btn--primary"
+              class="g-btn g-btn--primary g-btn--small"
               type="primary"
               :ripple="false"
               hover-class="g-primary-hover"

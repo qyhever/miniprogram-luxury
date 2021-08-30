@@ -94,12 +94,103 @@
         提交
       </u-button>
     </view>
+    <u-popup
+      v-model="descVisible"
+      mode="center"
+      closeable
+      width="280px"
+      height="500px"
+    >
+      <view>
+        <view class="desc-title">
+          拍摄说明
+        </view>
+        <view class="desc-panel">
+          <view
+            v-for="(groupItem, groupIndex) in descData"
+            :key="groupIndex"
+          >
+            <view class="desc-hd">
+              {{ groupIndex + 1 }}. {{ groupItem.title }}
+            </view>
+            <view
+              v-for="(item, index) in groupItem.imageList"
+              :key="index"
+              class="flow-item"
+            >
+              <view class="flow-item-inner">
+                <image class="flow-item-image" :src="item.picUrl" />
+                <view class="flow-item-label">
+                  <view class="flow-item-label-inner">
+                    {{ item.label }}
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </u-popup>
   </view>
 </template>
 
 <script>
 import categoryList from '@/utils/data/category'
 import brandData from '@/utils/data/brand'
+
+const descData = [
+  {
+    title: '名包',
+    imageList: [
+      { label: '正面', picUrl: 'bag_one@2x.png' },
+      { label: '标志或刻字', picUrl: 'bag_two@2x.png' },
+      { label: '拉链或五金', picUrl: 'bag_thr@2x.png' },
+      { label: '数字编号', picUrl: 'bag_four@2x.png' },
+      { label: '纹路与车线', picUrl: 'bag_five@2x.png' },
+      { label: '发票与保修卡', picUrl: 'bag_six@2x.png' }
+    ]
+  },
+  {
+    title: '手表',
+    imageList: [
+      { label: '正面', picUrl: 'swatch_one@2x.png' },
+      { label: '背面', picUrl: 'swatch_two@2x.png' },
+      { label: '流水码', picUrl: 'swatch_thr@2x.png' },
+      { label: '侧面', picUrl: 'swatch_four@2x.png' },
+      { label: '表扣与表带', picUrl: 'swatch_five@2x.png' },
+      { label: '发票与保修卡', picUrl: 'swatch_six@2x.png' }
+    ]
+  },
+  {
+    title: '首饰',
+    imageList: [
+      { label: '正面', picUrl: 'jewelry_one@2x.png' },
+      { label: '背面', picUrl: 'jewelry_two@2x.png' },
+      { label: '标志或流水码', picUrl: 'jewelry_thr@2x.png' },
+      { label: '侧面', picUrl: 'jewelry_four@2x.png' },
+      { label: '发票与保修卡', picUrl: 'jewelry_five@2x.png' }
+    ]
+  },
+  {
+    title: '其它',
+    imageList: [
+      { label: '正面', picUrl: 'other_one@2x.png' },
+      { label: '背面', picUrl: 'other_two@2x.png' },
+      { label: '标志', picUrl: 'other_thr@2x.png' },
+      { label: '侧面', picUrl: 'other_four@2x.png' },
+      { label: '发票与保修卡', picUrl: 'other_fove@2x.png' }
+    ]
+  }
+].map(item => {
+  return Object.assign({}, item, {
+    imageList: item.imageList.map(v => {
+      return Object.assign({}, v, {
+        picUrl: 'https://w-shop-1255721318.cos.ap-nanjing.myqcloud.com/' + v.picUrl
+      })
+    })
+  })
+})
+
 export default {
   data () {
     this.brandDataCache = {}
@@ -128,7 +219,9 @@ export default {
       brandVisible: false,
       brandList: [],
       currentCategoryIndex: 0,
-      currentBrandIndex: 0
+      currentBrandIndex: 0,
+      descVisible: false,
+      descData
     }
   },
   onLoad (data) {
@@ -210,7 +303,7 @@ export default {
       this.form.picList.splice(index, 1)
     },
     onDescriptionClick () {
-      console.log('onDescriptionClick')
+      this.descVisible = true
     }
   }
 }
@@ -281,5 +374,72 @@ export default {
   padding: 10px;
   background-color: $color-bg;
   border-radius: 6px;
+}
+
+.desc-title {
+  position: relative;
+  margin-left: 18px;
+  margin-top: 14px;
+  padding-left: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 15px;
+    background-color: #F0CEB3;
+    border-radius: 2px;
+  }
+}
+.desc-panel {
+  width: 226px;
+  margin: 0 auto;
+}
+.desc-hd {
+  padding: 15px 0 10px;
+}
+.flow-item {
+  display: inline-block;
+  width: 75px;
+  height: 70px;
+  padding: 0 5px;
+  margin-bottom: 10px;
+}
+.flow-item-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.flow-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.flow-item-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  background-color: rgba(0, 0, 0, .6);
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flow-item-label-inner {
+  white-space: nowrap;
+  // transform: scale(0.75);
+  font-size: 10px;
+  text-align: center;
 }
 </style>

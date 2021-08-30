@@ -60,9 +60,9 @@
             <view class="menu-item__image">
               <image class="fill-container" :src="item.picUrl" />
             </view>
-            <text class="menu-item__label">
+            <view class="menu-item__label">
               {{ item.name }}
-            </text>
+            </view>
           </view>
         </view>
       </view>
@@ -76,13 +76,18 @@
           </view>
         </view>
         <view class="flex menu-list">
-          <view v-for="(item, index) in commonServiceList" :key="index" class="menu-item">
+          <view
+            v-for="(item, index) in commonServiceList"
+            :key="index"
+            class="menu-item"
+            @click="onMenuItemClick(item.value)"
+          >
             <view class="menu-item__image">
               <image class="fill-container" :src="item.picUrl" />
             </view>
-            <text class="menu-item__label">
+            <view class="menu-item__label">
               {{ item.name }}
-            </text>
+            </view>
           </view>
         </view>
       </view>
@@ -112,18 +117,22 @@ const myOrderList = [
 const commonServiceList = [
   {
     name: '地址管理',
+    value: 'address',
     picUrl: '/static/images/common-location.png'
   },
   {
     name: '联系客服',
+    value: 'contact',
     picUrl: '/static/images/common-message.png'
   },
   {
     name: '常见问题',
+    value: 'question',
     picUrl: '/static/images/common-question.png'
   },
   {
     name: '设置',
+    value: 'setting',
     picUrl: '/static/images/common-setting.png'
   }
 ]
@@ -132,6 +141,15 @@ export default {
     return {
       myOrderList,
       commonServiceList
+    }
+  },
+  methods: {
+    onMenuItemClick (val) {
+      if (val === 'setting') {
+        wx.navigateTo({
+          url: '/pages/setting/setting'
+        })
+      }
     }
   }
 }
@@ -172,6 +190,9 @@ export default {
   justify-content: space-between;
   padding: 0 28px;
 }
+.menu-item {
+  width: 4em;
+}
 .menu-item__image {
   width: 26px;
   height: 26px;
@@ -180,5 +201,6 @@ export default {
 .menu-item__label {
   color: $color-text-regular;
   font-size: 13px;
+  text-align: center;
 }
 </style>

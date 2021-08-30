@@ -1,5 +1,8 @@
 
 @for $i from 1 through 50 {
+  .font-size-#{$i} {
+    font-size: $i + px;
+  }
   @if $i % 2 == 0 or $i % 5 == 0 {
     .padding-#{$i} {
       padding: $i + px;
@@ -30,9 +33,6 @@
     }
     .margin-left-#{$i} {
       margin-left: $i + px;
-    }
-    .font-size-#{$i} {
-      font-size: $i + px;
     }
   }
 }
@@ -113,4 +113,15 @@
 }
 .border-bottom {
   @include border-bottom;
+}
+.extend-click {
+  position: relative;
+  &:before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+  }
 }
